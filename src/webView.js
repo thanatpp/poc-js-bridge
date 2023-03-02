@@ -1,5 +1,6 @@
 export function webview() {
   if (typeof window !== 'undefined') {
+    // This section for listen data received from native
     window.listeningPreFetchCreditCardCampaign = {
       aInternal: 10,
       aListener() {},
@@ -15,6 +16,7 @@ export function webview() {
       }
     }
 
+    // This section code for native access to webview
     window.webview = {
       preFetchCreditCardCampaign: (data) => {
         window.listeningPreFetchCreditCardCampaign.preFetchCreditCardCampaignData = JSON.parse(data)
