@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import { webview, callNative } from './webview'
+import { webview, callNative } from './webView'
 
 const preFetchResponse = ref({})
 
