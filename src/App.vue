@@ -44,7 +44,6 @@ function onClickClear() {
       display: 'flex',
       flexDirection: 'column',
       height: '100vh',
-      width: '100vh',
       justifyContent: 'center',
       alignItems: 'center'
     }"
