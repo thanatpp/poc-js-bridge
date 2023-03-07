@@ -39,7 +39,16 @@ function onClickClear() {
 </script>
 
 <template>
-  <div :style="{ display: 'flex', flexDirection: 'column' }">
+  <div
+    :style="{
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100vh',
+      width: '100vh',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }"
+  >
     <button @click="onClickPreFetchCreditCardCampaign">preFetchCreditCardCampaign</button>
     <button @click="onClickGetFlagAutoSaveSlipData">getFlagAutoSaveSlip</button>
     <button @click="onClickClear">Clear</button>
