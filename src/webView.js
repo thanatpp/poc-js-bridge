@@ -16,11 +16,30 @@ export function webview() {
       }
     }
 
+    window.listeningGetFlagAutoSaveSlip = {
+      aInternal: 10,
+      aListener() {},
+      set getFlagAutoSaveSlipData(val) {
+        this.aInternal = val
+        this.aListener(val)
+      },
+      get getFlagAutoSaveSlipData() {
+        return this.aInternal
+      },
+      registerListener(listener) {
+        this.aListener = listener
+      }
+    }
+
     // This section code for native access to webview
     window.webview = {
       preFetchCreditCardCampaign: (data) => {
         window.listeningPreFetchCreditCardCampaign.preFetchCreditCardCampaignData = JSON.parse(data)
         return 'PreFetch Credit Card Campaign'
+      },
+      getFlagAutoSaveSlip: (data) => {
+        window.listeningGetFlagAutoSaveSlip.getFlagAutoSaveSlipData = JSON.parse(data)
+        return 'Get Flag Auto SaveSlip'
       }
     }
   }

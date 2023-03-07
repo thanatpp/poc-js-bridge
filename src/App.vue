@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { webview, callNative } from './webView'
 
-const preFetchResponse = ref({})
+const response = ref({})
 
 onMounted(() => {
   webview()
@@ -11,28 +11,38 @@ onMounted(() => {
   if (typeof window !== 'undefined') {
     window.listeningPreFetchCreditCardCampaign.registerListener(
       (preFetchCreditCardCampaignData) => {
-        preFetchResponse.value = preFetchCreditCardCampaignData
+        console.log('response::', preFetchCreditCardCampaignData)
+        response.value = preFetchCreditCardCampaignData
       }
     )
+    window.listeningGetFlagAutoSaveSlip.registerListener((res) => {
+      console.log('response::', res)
+      response.value = res
+    })
   }
 })
 
-function onClick() {
+function onClickPreFetchCreditCardCampaign() {
   callNative('preFetchCreditCardCampaign', {
     promotionCode: '200000',
     promotionType: 'CS'
   })
 }
 
+function onClickGetFlagAutoSaveSlipData() {
+  callNative('getFlagAutoSaveSlip', {})
+}
+
 function onClickClear() {
-  preFetchResponse.value = {}
+  response.value = {}
 }
 </script>
 
 <template>
   <div :style="{ display: 'flex', flexDirection: 'column' }">
-    <button @click="onClick">Click Me Pls</button>
+    <button @click="onClickPreFetchCreditCardCampaign">preFetchCreditCardCampaign</button>
+    <button @click="onClickGetFlagAutoSaveSlipData">getFlagAutoSaveSlip</button>
     <button @click="onClickClear">Clear</button>
-    <div>preFetchResponse: {{ JSON.stringify(preFetchResponse) }}</div>
+    <div>response: {{ JSON.stringify(response) }}</div>
   </div>
 </template>
