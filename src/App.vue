@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 import { webview, callNative } from './webView'
 import { useRoute } from 'vue-router'
 
@@ -7,7 +7,6 @@ const route = useRoute()
 const response = ref({})
 
 onMounted(() => {
-  console.log()
   webview()
   console.log(window)
 
@@ -19,6 +18,10 @@ onMounted(() => {
       }
     )
     window.listeningGetFlagAutoSaveSlip.registerListener((res) => {
+      console.log('response::', res)
+      response.value = res
+    })
+    window.listeningOpenMyBenefitWebViewBottomSheet.registerListener((res) => {
       console.log('response::', res)
       response.value = res
     })
@@ -36,8 +39,10 @@ function onClickGetFlagAutoSaveSlipData() {
   callNative('getFlagAutoSaveSlip', {})
 }
 
-function onClickShowCreditCardAddressBottomSheet() {
-  callNative('showCreditCardAddressBottomSheet', { accountId: '001100000000000000000025532654' })
+function onClickOpenMyBenefitWebViewBottomSheet() {
+  callNative('openMyBenefitWebViewBottomSheet', {
+    page: 'confirmMobilePhone'
+  })
 }
 
 function onClickCloseMyBenefitWebViewBottomSheet() {
@@ -59,23 +64,28 @@ function onClickClear() {
       alignItems: 'center'
     }"
   >
-    <h1>current path: {{ route.fullPath }}</h1>
-    <h1>
+    <div>current path: {{ route.fullPath }}</div>
+    <button>
       <router-link to="/">Go to home</router-link>
-    </h1>
-    <h1>
+    </button>
+    <button>
       <router-link to="/test">Go to /test</router-link>
-    </h1>
-    <div>response: {{ JSON.stringify(response) }}</div>
+    </button>
+    <div
+      :style="{
+        paddingTop: '50px'
+      }"
+    >
+      response: {{ JSON.stringify(response) }}
+    </div>
     <button @click="onClickPreFetchCreditCardCampaign">preFetchCreditCardCampaign</button>
     <button @click="onClickGetFlagAutoSaveSlipData">getFlagAutoSaveSlip</button>
-    <button @click="onClickShowCreditCardAddressBottomSheet">
-      onClickShowCreditCardAddressBottomSheet
+    <button @click="onClickOpenMyBenefitWebViewBottomSheet">
+      onClickOpenMyBenefitWebViewBottomSheet
     </button>
     <button @click="onClickCloseMyBenefitWebViewBottomSheet">
       onClickCloseMyBenefitWebViewBottomSheet
     </button>
-
     <button @click="onClickClear">Clear</button>
   </div>
 </template>

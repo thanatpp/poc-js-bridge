@@ -31,6 +31,21 @@ export function webview() {
       }
     }
 
+    window.listeningOpenMyBenefitWebViewBottomSheet = {
+      aInternal: 10,
+      aListener() {},
+      set getOpenMyBenefitWebViewBottomSheetData(val) {
+        this.aInternal = val
+        this.aListener(val)
+      },
+      get getOpenMyBenefitWebViewBottomSheetData() {
+        return this.aInternal
+      },
+      registerListener(listener) {
+        this.aListener = listener
+      }
+    }
+
     // This section code for native access to webview
     window.webview = {
       preFetchCreditCardCampaign: (data) => {
@@ -40,6 +55,11 @@ export function webview() {
       getFlagAutoSaveSlip: (data) => {
         window.listeningGetFlagAutoSaveSlip.getFlagAutoSaveSlipData = JSON.parse(data)
         return 'Get Flag Auto SaveSlip'
+      },
+      openMyBenefitWebViewBottomSheet: (data) => {
+        window.listeningOpenMyBenefitWebViewBottomSheet.getOpenMyBenefitWebViewBottomSheetData =
+          JSON.parse(data)
+        return 'Open MyBenefit Web View Bottom Sheet'
       }
     }
   }
