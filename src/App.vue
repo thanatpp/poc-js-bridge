@@ -39,7 +39,7 @@ function onClickGetFlagAutoSaveSlipData() {
   callNative('getFlagAutoSaveSlip', {})
 }
 
-function onClickOpenMyBenefitWebViewBottomSheet() {
+function onClickShowMyBenefitWebviewBottomSheet() {
   callNative('showMyBenefitWebviewBottomSheet', {
     page: 'confirmMobilePhone'
   })
