@@ -21,7 +21,7 @@ onMounted(() => {
       console.log('response::', res)
       response.value = res
     })
-    window.listeningOpenMyBenefitWebViewBottomSheet.registerListener((res) => {
+    window.listeningShowMyBenefitWebviewBottomSheet.registerListener((res) => {
       console.log('response::', res)
       response.value = res
     })
@@ -40,13 +40,9 @@ function onClickGetFlagAutoSaveSlipData() {
 }
 
 function onClickOpenMyBenefitWebViewBottomSheet() {
-  callNative('openMyBenefitWebViewBottomSheet', {
+  callNative('showMyBenefitWebviewBottomSheet', {
     page: 'confirmMobilePhone'
   })
-}
-
-function onClickCloseMyBenefitWebViewBottomSheet() {
-  callNative('closeMyBenefitWebViewBottomSheet', {})
 }
 
 function onClickClear() {
@@ -80,11 +76,8 @@ function onClickClear() {
     </div>
     <button @click="onClickPreFetchCreditCardCampaign">preFetchCreditCardCampaign</button>
     <button @click="onClickGetFlagAutoSaveSlipData">getFlagAutoSaveSlip</button>
-    <button @click="onClickOpenMyBenefitWebViewBottomSheet">
-      onClickOpenMyBenefitWebViewBottomSheet
-    </button>
-    <button @click="onClickCloseMyBenefitWebViewBottomSheet">
-      onClickCloseMyBenefitWebViewBottomSheet
+    <button @click="onClickShowMyBenefitWebviewBottomSheet">
+      onClickShowMyBenefitWebviewBottomSheet
     </button>
     <button @click="onClickClear">Clear</button>
   </div>

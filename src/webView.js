@@ -31,14 +31,14 @@ export function webview() {
       }
     }
 
-    window.listeningOpenMyBenefitWebViewBottomSheet = {
+    window.listeningShowMyBenefitWebviewBottomSheet = {
       aInternal: 10,
       aListener() {},
-      set getOpenMyBenefitWebViewBottomSheetData(val) {
+      set getShowMyBenefitWebviewBottomSheetData(val) {
         this.aInternal = val
         this.aListener(val)
       },
-      get getOpenMyBenefitWebViewBottomSheetData() {
+      get getShowMyBenefitWebviewBottomSheetData() {
         return this.aInternal
       },
       registerListener(listener) {
@@ -57,9 +57,9 @@ export function webview() {
         return 'Get Flag Auto SaveSlip'
       },
       openMyBenefitWebViewBottomSheet: (data) => {
-        window.listeningOpenMyBenefitWebViewBottomSheet.getOpenMyBenefitWebViewBottomSheetData =
+        window.listeningShowMyBenefitWebviewBottomSheet.getShowMyBenefitWebviewBottomSheetData =
           JSON.parse(data)
-        return 'Open MyBenefit Web View Bottom Sheet'
+        return 'Show MyBenefit Webview Bottom Sheet'
       }
     }
   }
