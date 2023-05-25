@@ -56,7 +56,7 @@ export function webview() {
         window.listeningGetFlagAutoSaveSlip.getFlagAutoSaveSlipData = JSON.parse(data)
         return 'Get Flag Auto SaveSlip'
       },
-      showMyBenefitWebViewBottomSheet: (data) => {
+      showMyBenefitWebviewBottomSheet: (data) => {
         window.listeningShowMyBenefitWebviewBottomSheet.getShowMyBenefitWebviewBottomSheetData =
           JSON.parse(data)
         return 'Show MyBenefit Webview Bottom Sheet'
